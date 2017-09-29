@@ -704,6 +704,7 @@ void RTIMUSettings::setDefaults()
     // LSM6DS33LIS3MDL defaults
 
     m_LSM6DS33LIS3MDLGyroSampleRate = LSM6DS33_GYRO_SAMPLERATE_104;
+    m_LSM6DS33LIS3MDLGyroHpfEnabled = false;
     m_LSM6DS33LIS3MDLGyroHpf = LSM6DS33_GYRO_HPF_3;
     m_LSM6DS33LIS3MDLGyroFsr = LSM6DS33_GYRO_FSR_500;
 
@@ -1040,6 +1041,8 @@ bool RTIMUSettings::loadSettings()
             m_LSM6DS33LIS3MDLGyroSampleRate = atoi(val);
         } else if (strcmp(key, RTIMULIB_LSM6DS33LIS3MDL_GYRO_FSR) == 0) {
             m_LSM6DS33LIS3MDLGyroFsr = atoi(val);
+        } else if (strcmp(key, RTIMULIB_LSM6DS33LIS3MDL_GYRO_HPF_ENABLED) == 0) {
+            m_LSM6DS33LIS3MDLGyroHpfEnabled = (strcmp(val, "true") == 0);
         } else if (strcmp(key, RTIMULIB_LSM6DS33LIS3MDL_GYRO_HPF) == 0) {
             m_LSM6DS33LIS3MDLGyroHpf = atoi(val);
         } else if (strcmp(key, RTIMULIB_LSM6DS33LIS3MDL_ACCEL_SAMPLERATE) == 0) {
@@ -1951,7 +1954,12 @@ bool RTIMUSettings::saveSettings()
 
     setBlank();
     setComment("");
-    setComment("Gyro high pass filter - ");
+    setComment("Gyro high pass filter enabled ('true' or 'false') - ");
+    setValue(RTIMULIB_LSM6DS33LIS3MDL_GYRO_HPF_ENABLED, m_LSM6DS33LIS3MDLGyroHpfEnabled);
+
+    setBlank();
+    setComment("");
+    setComment("Gyro high pass filter cutoff frequency - ");
     setComment("  0 = 0.0081 Hz ");
     setComment("  1 = 0.0324 Hz ");
     setComment("  2 = 2.07 Hz ");

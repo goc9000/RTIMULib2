@@ -156,6 +156,7 @@
 
 #define RTIMULIB_LSM6DS33LIS3MDL_GYRO_SAMPLERATE "LSM6DS33LIS3MDLGyroSampleRate"
 #define RTIMULIB_LSM6DS33LIS3MDL_GYRO_HPF  "LSM6DS33LIS3MDLGyroHpf"
+#define RTIMULIB_LSM6DS33LIS3MDL_GYRO_HPF_ENABLED  "LSM6DS33LIS3MDLGyroHpfEnabled"
 #define RTIMULIB_LSM6DS33LIS3MDL_GYRO_FSR  "LSM6DS33LIS3MDLGyroFsr"
 
 #define RTIMULIB_LSM6DS33LIS3MDL_ACCEL_SAMPLERATE "LSM6DS33LIS3MDLAccelSampleRate"
@@ -389,6 +390,7 @@ public:
 
     int m_LSM6DS33LIS3MDLGyroSampleRate;                    // the gyro sample rate
     int m_LSM6DS33LIS3MDLGyroHpf;                           // the gyro high pass filter cutoff code
+    bool m_LSM6DS33LIS3MDLGyroHpfEnabled;                   // enable or disable gyro high pass filter
     int m_LSM6DS33LIS3MDLGyroFsr;                           // the gyro full scale range
 
     int m_LSM6DS33LIS3MDLAccelSampleRate;                   // the accel sample rate

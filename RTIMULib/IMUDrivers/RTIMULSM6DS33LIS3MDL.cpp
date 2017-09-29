@@ -212,7 +212,7 @@ bool RTIMULSM6DS33LIS3MDL::setGyroCTRL7()
     unsigned char ctrl7;
 
     // Turn on HPF
-    ctrl7 = 0x40;
+    ctrl7 = (m_settings->m_LSM6DS33LIS3MDLGyroHpfEnabled) ? 0x40 : 0x00;
 
     switch (m_settings->m_LSM6DS33LIS3MDLGyroHpf) {
     case LSM6DS33_GYRO_HPF_0:
