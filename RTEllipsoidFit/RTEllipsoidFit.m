@@ -37,7 +37,7 @@
 
 % read in data from saved file
 
-magFile = fopen('mag', 'r');
+magFile = fopen('magRaw.dta', 'r');
 magCalDataMat = fscanf(magFile, '%f %f %f', [3, inf]);
 %fprintf('Mat size = %d\n', size(magCalDataMat));
 fclose(magFile);
