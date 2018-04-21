@@ -500,6 +500,11 @@ bool RTIMULSM6DS33LIS3MDL::IMURead()
     if (!m_settings->HALRead(m_compassSlaveAddr, 0x80 | LIS3MDL_OUT_X_L, 6, compassData, "Failed to read LIS3MDL compass data"))
         return false;
 
+    // Re-enable magnetometer if it is used in single-shot mode
+    if (m_settings->m_LSM6DS33LIS3MDLCompassSampleRate < LIS3MDL_SAMPLERATE_FAST) {
+		setCompassCTRL3();
+	}
+
     RTMath::convertToVector(gyroData, m_imuData.gyro, m_gyroScale, false);
     RTMath::convertToVector(accelData, m_imuData.accel, m_accelScale, false);
     RTMath::convertToVector(compassData, m_imuData.compass, m_compassScale, false);
