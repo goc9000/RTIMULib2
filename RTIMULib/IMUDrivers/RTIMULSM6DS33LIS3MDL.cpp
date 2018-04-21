@@ -387,11 +387,11 @@ bool RTIMULSM6DS33LIS3MDL::setCompassCTRL1()
             break;
 
         case LIS3MDL_POWER_HP:
-            ctrl1 |= 0x30;
+            ctrl1 |= 0x40;
             break;
 
         case LIS3MDL_POWER_UHP:
-            ctrl1 |= 0x40;
+            ctrl1 |= 0x60;
             break;
 
         default:
@@ -466,7 +466,7 @@ bool RTIMULSM6DS33LIS3MDL::setCompassCTRL4()
         return false;
     }
 
-    return m_settings->HALWrite(m_compassSlaveAddr, LIS3MDL_CTRL_REG4, m_settings->m_LSM6DS33LIS3MDLCompassPowerMode, "Failed to set LIS3MDL CTRL4");
+    return m_settings->HALWrite(m_compassSlaveAddr, LIS3MDL_CTRL_REG4, m_settings->m_LSM6DS33LIS3MDLCompassPowerMode << 2, "Failed to set LIS3MDL CTRL4");
 }
 
 int RTIMULSM6DS33LIS3MDL::IMUGetPollInterval()
